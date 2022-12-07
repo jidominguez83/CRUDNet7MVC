@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CRUDNet7MVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDNet7MVC.Controllers.Datos
 {
@@ -10,5 +11,6 @@ namespace CRUDNet7MVC.Controllers.Datos
         }
 
         //Agregar aquí los modelos
+        public DbSet<Contacto> Contacto { get; set; }
     }
 }

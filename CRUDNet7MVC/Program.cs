@@ -1,7 +1,14 @@
+using CRUDNet7MVC.Controllers.Datos;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configuración de la conexión a SQL Local db MSSQLLOCAL
+builder.Services.AddDbContext<ApplicationDBContext>(opciones => 
+        opciones.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSql")));
 
 var app = builder.Build();
 
@@ -18,6 +25,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Inicio}/{action=Index}/{id?}");
 
 app.Run();

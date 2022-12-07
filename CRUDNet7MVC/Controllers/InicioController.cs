@@ -1,21 +1,24 @@
-﻿using CRUDNet7MVC.Models;
+﻿using CRUDNet7MVC.Controllers.Datos;
+using CRUDNet7MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace CRUDNet7MVC.Controllers
 {
-    public class HomeController : Controller
+    public class InicioController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDBContext _contexto;
 
-        public HomeController(ILogger<HomeController> logger)
+        public InicioController(ApplicationDBContext contexto)
         {
-            _logger = logger;
+            _contexto = contexto;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _contexto.Contacto.ToListAsync());
         }
 
         public IActionResult Privacy()
